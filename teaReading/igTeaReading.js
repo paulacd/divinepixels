@@ -10,6 +10,7 @@ function triggerSubmit(){
 					var nextURL;
 					var id = "";
 					var allImage = [];
+					var captions = [];
 					//var socket = io.connect();
 					
 					var isFirstOpenEye = true
@@ -108,22 +109,25 @@ function triggerSubmit(){
 		//this gives you the whole page as a JSON
 				    function grabImage(result) {
 
-				    	console.log(result);
+				    	//console.log(result);
 
-				    	//get the last url to take me to the next page
-				    	//items.caption.text 
-			 	  //   	if (result.items != null && result.items != undefined) {
-					  //   	var lastURL = result.items.length - 1;
+				    	// get the last url to take me to the next page
+				    	// items.caption.text 
+			 	    	if (result.items != null && result.items != undefined) {
+					    	//var lastURL = result.items.length - 1;
 
-							// //loop through to get the image source
-							// for( var i = 0; i < result.items.length; i++) {
-							// 	var lowRes = result.items[i].images.low_resolution.url;
-							// 			//push to an array to draw
-					  //       	allImage.push(lowRes);
+							//loop through to get the image source
+							for( var i = 0; i < result.items.length; i++) {
+								//var lowRes = result.items[i].images.low_resolution.url;
+								var caption = result.items[i].caption.text
+										//push to an array to draw
+					        	//allImage.push(lowRes);
+					        	captions.push(caption);
+					        	console.log(captions)
 		
-							// }
+							}
 
-							// //this is to go to the next page by using the last url 
+							//this is to go to the next page by using the last url 
 							// if (result.more_available && allImage.length < 200) {
 							// 	nextURL = "https://www.instagram.com/" + id + "/media/?max_id=" + result.items[lastURL].id;
 		
@@ -139,7 +143,7 @@ function triggerSubmit(){
 							// 	return
 							// }
 							
-					  // 	}
+					  	}
 				    }
 		
 				    drawImage = function(imageCounter){
