@@ -1,4 +1,5 @@
-				
+					var allImage = [];
+					var captions = [];				
 
 function triggerSubmit(){
 				
@@ -9,8 +10,7 @@ function triggerSubmit(){
 					var url;
 					var nextURL;
 					var id = "";
-					var allImage = [];
-					var captions = [];
+
 					//var socket = io.connect();
 					
 					var isFirstOpenEye = true
@@ -123,7 +123,17 @@ function triggerSubmit(){
 										//push to an array to draw
 					        	//allImage.push(lowRes);
 					        	captions.push(caption);
-					        	console.log(captions)
+					        	//console.log(captions)
+
+					        	// var brunch = $('*:contains("#colombia")');
+
+					        	// console.log(brunch)
+
+					        	
+										var re = /#colombia/;
+										var found = caption.match(re);
+
+										console.log(found);
 		
 							}
 
