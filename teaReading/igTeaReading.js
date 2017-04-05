@@ -1,6 +1,7 @@
 					var allImage = [];
 					var captions = [];
 					var regexArray = [];	
+					var brunchImgs = []; 
 
         	//find a picture based on a caption
 					var reg1 = /#brunch/;
@@ -19,9 +20,10 @@
 					regexArray.push(reg6);
 					regexArray.push(reg7);			
 
-function triggerSubmit(){
-				
 
+
+
+function triggerSubmit(){
 				
 					console.log("load");
 				
@@ -81,7 +83,6 @@ function triggerSubmit(){
 							console.log("SetId: id is " + IGhandle);
 							
 							if (id != null) {
-							
 								
 								url = "https://www.instagram.com/" + IGhandle + "/media/";
 								//socket.emit('closeEye');
@@ -135,7 +136,6 @@ function triggerSubmit(){
 			 	    	if (result.items != null && result.items != undefined) {
 					    	var lastURL = result.items.length - 1;
 
-					    	var brunchImgs = []; 
 							//loop through to get the image source
 
 							console.log(result.items.length);
@@ -145,8 +145,6 @@ function triggerSubmit(){
 								if (result.items[i].caption != null) var caption = result.items[i].caption.text;
 								else continue; // 'continue' skips to the next iteration of the loop
 								
-								
-
 								// console.log(caption)
 										//push to an array to draw
 					        	//allImage.push(lowRes);
@@ -154,8 +152,6 @@ function triggerSubmit(){
 					        	//console.log(captions)
 					        	// console.log(brunch)
 					        	
-
-
 										for ( var j = 0; j < regexArray.length; j++){
 
 												var found = caption.match(regexArray[j]);
@@ -173,12 +169,8 @@ function triggerSubmit(){
 
 										}
 
-
-						
-
 										//console.log(found);
 
-		
 							}
 							console.log (brunchImgs);
 
@@ -190,66 +182,26 @@ function triggerSubmit(){
 								nextURL = "https://www.instagram.com/" + IGhandle + "/media/?max_id=" + result.items[lastURL].id;
 								console.log(nextURL)
 		
+								console.log("attempt grabImage");
 								callMethod(nextURL, grabImage);
+								console.log("done grabImage");
 								
 
 							} 
-							// else {
-							// 	//socket.emit('openEye', null);
-							// 	console.log('i should draw image');
-							// 	console.log(allImage.length);
-							// 	// isFirstOpenEye = true;
-							// 	//drawImage(0);
-							// 	//isDrawing = true;
-							// 	return
-							// }
+
+							drawImage(0);
 							
 					  	}
 				    }
 		
-				    drawImage = function(imageCounter){
-							//add image source to div in order to draw it on html page 
-							myImage.src = brunchImgs[imageCounter];
-						  	console.log(imageCounter);
-
-
-						  //add refresh button 
-
-						  	// //new stuff
-						  	// var animationLength = 2000;
-						  	// var counterEnd = allImage.length - 1;
-						  	// var countInterval = animationLength / counterEnd;
-						  	// // var a = 1.05;
-						  	// var a = 1.09;
-						  	// var summatory = 0;
-		
-						  	// if(imageCounter < allImage.length - 1){
-						  	//   imageCounter++;
-
-						  	//   //new stuff
-						  	//   var newInterval = (animationLength-summatory) / ( (a-Math.pow(a, -(counterEnd-1))) / (a-1));
-
-						  	//   summatory += newInterval;
-						  	//   countInterval = newInterval;
-
-						  	//   setTimeout(function(){
-						  	//   	drawImage(imageCounter);
-						  	//   },newInterval);
-
-						  	//   // setTimeout(function(){
-						  	//   // 	drawImage(imageCounter);
-						  	//   // },41);
-						  	// }
-						  	// else{
-						  	//   console.log("finished!");
-						  	//   allImage = [];
-						  	//   summatory = 0;
-						  	  
-						  	//   socket.emit('closeEye');
-						  	//   eyeIsClosed = true;
-						  	//   isDrawing = false;
-
-						  	// }
+				    function drawImage(imageCounter){
+				    	if (brunchImgs.length > 0) {
+				    		//add image source to div in order to draw it on html page 
+								myImage.src = brunchImgs[0];
+						  	//console.log('brunchImgs: ' + brunchImgs[0]);
+				    	}
+							
+							//add refresh
 				    
 				    }
 				    
