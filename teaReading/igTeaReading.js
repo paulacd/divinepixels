@@ -1,5 +1,15 @@
 					var allImage = [];
-					var captions = [];				
+					var captions = [];
+					var regexArray = [];	
+
+        	//find a picture based on a caption
+					var reg1 = /#moosefoot/;
+					var reg2 = /#brunch/;
+					var reg3 = /#breakfast/;
+
+					regexArray.push(reg1);
+					regexArray.push(reg2);
+					regexArray.push(reg3);			
 
 function triggerSubmit(){
 				
@@ -10,6 +20,7 @@ function triggerSubmit(){
 					var url;
 					var nextURL;
 					var id = "";
+					var foundPic = false; 
 
 					//var socket = io.connect();
 					
@@ -63,8 +74,8 @@ function triggerSubmit(){
 							
 							if (id != null) {
 							
-								url = "https://www.instagram.com/" + IGhandle + "/media/";
 								
+								url = "https://www.instagram.com/" + IGhandle + "/media/";
 								//socket.emit('closeEye');
 								callMethod(url, grabImage);
 								
@@ -114,42 +125,74 @@ function triggerSubmit(){
 				    	// get the last url to take me to the next page
 				    	// items.caption.text 
 			 	    	if (result.items != null && result.items != undefined) {
-					    	//var lastURL = result.items.length - 1;
+					    	var lastURL = result.items.length - 1;
 
+					    	var brunchImgs = []; 
 							//loop through to get the image source
+
+							console.log(result.items.length);
+
 							for( var i = 0; i < result.items.length; i++) {
-								//var lowRes = result.items[i].images.low_resolution.url;
-								var caption = result.items[i].caption.text
+								
+								if (result.items[i].caption != null) var caption = result.items[i].caption.text;
+								else continue; // 'continue' skips to the next iteration of the loop
+								
+								
+
+								// console.log(caption)
 										//push to an array to draw
 					        	//allImage.push(lowRes);
 					        	captions.push(caption);
 					        	//console.log(captions)
-
-					        	// var brunch = $('*:contains("#colombia")');
-
 					        	// console.log(brunch)
-
 					        	
-										var re = /#colombia/;
-										var found = caption.match(re);
 
-										console.log(found);
+
+										for ( var j = 0; j < regexArray.length; j++){
+
+												var found = caption.match(regexArray[j]);
+
+												//if picture is found, put in an array and display 
+												if (found){
+
+													console.log(' found: ' + regexArray[j]);
+
+													var standRes = result.items[i].images.standard_resolution.url;
+													brunchImgs.push(standRes);
+													foundPic = true; 
+												}
+
+
+										}
+
+
+						
+
+										//console.log(found);
+
 		
 							}
+							console.log (brunchImgs);
 
 							//this is to go to the next page by using the last url 
-							// if (result.more_available && allImage.length < 200) {
-							// 	nextURL = "https://www.instagram.com/" + id + "/media/?max_id=" + result.items[lastURL].id;
-		
-							// 	callMethod(nextURL, grabImage);
+							if (result.more_available && foundPic == false) {
+								console.log('checking more pages');
+								//console.log(result.items[lastURL].id);
 
-							// } else {
+								nextURL = "https://www.instagram.com/" + IGhandle + "/media/?max_id=" + result.items[lastURL].id;
+								console.log(nextURL)
+		
+								callMethod(nextURL, grabImage);
+								
+
+							} 
+							// else {
 							// 	//socket.emit('openEye', null);
 							// 	console.log('i should draw image');
 							// 	console.log(allImage.length);
 							// 	// isFirstOpenEye = true;
-							// 	drawImage(0);
-							// 	isDrawing = true;
+							// 	//drawImage(0);
+							// 	//isDrawing = true;
 							// 	return
 							// }
 							
@@ -158,7 +201,7 @@ function triggerSubmit(){
 		
 				    drawImage = function(imageCounter){
 							//add image source to div in order to draw it on html page 
-							myImage.src = allImage[imageCounter];
+							myImage.src = brunchImgs[imageCounter];
 						  	console.log(imageCounter);
 
 
