@@ -3,13 +3,21 @@
 					var regexArray = [];	
 
         	//find a picture based on a caption
-					var reg1 = /#moosefoot/;
-					var reg2 = /#brunch/;
+					var reg1 = /#brunch/;
+					var reg2 = /#brunching/;
 					var reg3 = /#breakfast/;
+					var reg4 = /#sundaybrunch/;
+					var reg5 = /#eggs/;
+					var reg6 = /#pancakes/;
+					var reg7 = /#bacon/;
 
 					regexArray.push(reg1);
 					regexArray.push(reg2);
-					regexArray.push(reg3);			
+					regexArray.push(reg3);	
+					regexArray.push(reg4);
+					regexArray.push(reg5);
+					regexArray.push(reg6);
+					regexArray.push(reg7);			
 
 function triggerSubmit(){
 				
