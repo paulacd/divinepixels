@@ -204,38 +204,49 @@ function triggerSubmit() {
         }
 
         //add refresh
+        if (foundPic){
+          console.log('calling getColor()');
+          //getColor();
+        }
+
 
     }
 
     window.drawImage = drawImage;
 
+
+    //------------------------------IG SCRAPPING------------------------------------------//
+
+
+    //------------------------------COLOR BLOTTING------------------------------------------//
+
+        $('#result').on('load',function() {
+          //do stuff
+          console.log('in getColor');
+          var colorThief = new ColorThief();
+          console.log('step 2');
+          var resultImg = document.getElementById("result");
+
+          console.log(resultImg);
+          var dominantColor = getDominantColor(resultImg);
+
+          console.log(dominantColor);
+
+          resultImg.crossOrigin = "Anonymous";
+          var test = colorThief.getColor(resultImg);
+          // var test = colorThief.getColor(brunchImgs[0]);
+          console.log('step 3');
+          var palette = colorThief.getPalette(resultImg, 2);
+          console.log(test);
+          console.log(palette);
+        });
+
+
+    // function getColor() {
+    //
+    //
+    // }
+
+
+
 };
-
-//------------------------------IG SCRAPPING------------------------------------------//
-
-//------------------------------COLOR BLOTTING------------------------------------------//
-
-
-// var img = document.createElement('img');
-// img.setAttribute('src', brunchImgs[0])
-// console.log(img);
-
-// img.addEventListener('load', function() {
-
-//retrieve result image, which is the one retrieved from instagram
-var imageResult = document.getElementById("result");
-
-//add an event listener to it for interface with vibrantjs
-imageResult.addEventListener('load', function() {
-	var vibrant = new Vibrant(imageResult);
-	var swatches = vibrant.swatches();
-	console.log("it has just loaded, right");
-	for (var swatch in swatches) {
-		if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
-			console.log(swatch, swatches[swatch].getHex());
-			//console.log(swatch);
-			//console.log(swatches[swatch].getRgb());
-			//console.log("success i guess");
-		}
-	}
-});
