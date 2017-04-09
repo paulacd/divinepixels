@@ -24,6 +24,8 @@ regexArray.push(reg5);
 regexArray.push(reg6);
 regexArray.push(reg7);
 
+var pageCount; // this variable keeps track of the number of pages you've searched through
+
 //------------------SERVER---------------------------//
 
 'use strict'
@@ -38,7 +40,9 @@ var https = require('https'),
 
 //HTTP
 var port = process.env.PORT || 5555;
+
 pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
+  
   var app = express();
 
   console.log("Our server is running on localhost:" + port);
@@ -62,110 +66,88 @@ https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(p
 
 
 
-//------------------ROUTER---------------------------//
 
-app.get('/', function(req, res) {
-    res.render('index.html');
-});
+    //------------------ROUTER---------------------------//
 
-app.get('/instagram/:handle', function(req, res) {
-    console.log('in instagram router');
-    //hitIG();
-    console.log(req.params.handle);
-    var IGhandle = req.params.handle;
+    app.get('/', function(req, res) {
+        res.render('index.html');
+        console.log('main route');
+    });
 
-    hitIG(IGhandle, function(path) {
+    app.get('/instagram/:handle', function(req, res) {
+        console.log('in instagram router');
+        console.log("Username is: " + req.params.handle);
+        
+        var IGhandle = req.params.handle;
+        var firstPageUrl = "https://www.instagram.com/" + IGhandle + "/media/";
 
-      // make sure hitIG returns the image URL
+        // call the hitIG function().  This function returns a promise, which means that once
+        // the async code has finished executing, the function resolves the image url.
+        // this means that the function passed to the .then() method takes whatever gets
+        // resolved by the original promise as an argument.  In this case, the image url 'bubbles up'
+        // once the promise resolves so you can use it in the function passed to .then()
+        // this allows us to send the image url to the front-end as the response to the front-end's
+        // original request
+        hitIG(IGhandle, firstPageUrl)
+            .then( function(imgUrl) {
+                console.log("Sending URL to front-end: ", imgUrl);
+                res.send(imgUrl);
+            });
 
-      // use image code that Rune pasted below to respond with image
 
-      res.send(path);
 
     });
 
 
-
-});
-
-
-});
-
-
+}); // end of pem
 
 
 
 //-----------------UTIL------------------------------//
 
-function hitIG(IGhandle, callback) {
+// The first promise in the promise-chain gets the response body
+function hitIG(IGhandle, url) {
 
+    console.log("hitting instagram");
+    
+    return new Promise( function(resolve, reject) {
+        
+        if (IGhandle != null){
 
-    console.log("load");
+            // make the request to the instagram server
+            requestify.get(url).then(function(response) {
+                
+                // the findMatch function returns a promise where the data being
+                // resolved is the image url
+                findMatch(IGhandle, response.getBody()).then(function(data){
 
-    var url;
+                    console.log('resolving hitIG');
+                    resolve(data);
+
+                }); // end of findMatch
+
+            }); // end of requestify
+
+        } // end of if-statement
+
+    }); // end of promise
+
+}
+
+// this function takes in a page result as json object and searches through it.
+// 
+function findMatch(IGhandle, result) {
+
     var nextURL;
     var id = "";
     var foundPic = false;
 
-    //var isFirstOpenEye = true
-    var isDrawing = false
-    // var myImage = document.getElementById("result");
-    var eyeIsClosed = false;
+    console.log('searching for match');
 
-    //grab the IG handle from twilio
+    return new Promise( function(resolve, reject) {
 
-    //setID = function() {
-
-    //$.getJSON('/instagram', function (data) {
-
-    //console.log(IGhandle)
-
-    //id = data.handle; //input value from text box
-
-    console.log("SetId: id is " + IGhandle);
-
-    if (id != null) {
-
-        url = "https://www.instagram.com/" + IGhandle + "/media/";
-        //socket.emit('closeEye');
-        // callMethod(url, grabImage);
-
-        callMethod(url);
-
-          // callMethod('/instagram', function(res){
-          //   console.log('response');
-          // });
-
-        // isDrawing = true;
-
-    }
-
-    function callMethod(url){
-        requestify.get(url).then(function(response) {
-    // Get the response body
-            console.log(response.getBody());
-            grabImage(response.getBody());
-        });
-
-    };
-
-    function evokeEmergencySolution() {
-        // drawing the alternative image
-        //myImage.src = 'img/duck.gif';
-        console.log("inside emergency solution");
-    }
-
-    //window.setID = setID;
-
-
-    //this gives you the whole page as a JSON
-    function grabImage(result) {
-
-        //console.log(result);
-
-        // get the last url to take me to the next page
-        // items.caption.text
         if (result.items != null && result.items != undefined) {
+
             var lastURL = result.items.length - 1;
 
             //loop through to get the image source
@@ -174,19 +156,22 @@ function hitIG(IGhandle, callback) {
 
             for (var i = 0; i < result.items.length; i++) {
 
+                // check to see whether there is a caption assosciated with the picture
                 if (result.items[i].caption != null) var caption = result.items[i].caption.text;
                 else continue; // 'continue' skips to the next iteration of the loop
 
-                // console.log(caption)
-                //push to an array to draw
-                //allImage.push(lowRes);
-                captions.push(caption);
-                //console.log(captions)
-                // console.log(brunch)
+                // because we only need one picture, we can break out of the loop if we've found a picture already
+                // It isn't necessary to keep looking because we resolve the promise as soon as we find
+                // a result
 
+                if(foundPic) break;
+     
+                // loop through the array of hashtags to match
                 for (var j = 0; j < regexArray.length; j++) {
 
                     var found = caption.match(regexArray[j]);
+
+                    console.log('trying to match hashtag: ' + regexArray[j]);
 
                     //if picture is found, put in an array and display
                     if (found) {
@@ -194,39 +179,22 @@ function hitIG(IGhandle, callback) {
                         console.log(' found: ' + regexArray[j]);
 
                         var standRes = result.items[i].images.standard_resolution.url;
+                        foundPic = true;
 
-                        // load image
-                        // return image to client
-
-    // var s = fs.createReadStream(IMAGEURL);
-    // s.on('open', function () {
-    //     res.set('Content-Type', 'image/jpeg');
-    //     s.pipe(res);
-    // });
-    // s.on('error', function () {
-    //     // something went wrong
-    // });
-
-                        saveImage(standRes, function(localUrl) {
-                          //callback(result.items[i].images.standard_resolution.url);
-                          callback(localUrl);
-
-                          //brunchImgs.push(standRes);
-                          brunchImgs.push(localUrl);
-                          foundPic = true;
-
-                        });
+                        console.log('resolving findMatch');
+                        resolve(standRes);
+                        break;
                     }
-
 
                 }
 
-                //console.log(found);
-
             }
-            console.log(brunchImgs);
 
-            //this is to go to the next page by using the last url
+            // If we fail to find a match, we need to check the next page, we do
+            // this by recursively calling the findMatch function inside itself. 
+            // Note that if we get to this stage, we havent found a match yet so
+            // the promise hasn't resolved yet - we only do this inside the .then()
+            // of the recursive findMatch() call.
             if (result.more_available && foundPic == false) {
                 console.log('checking more pages');
                 //console.log(result.items[lastURL].id);
@@ -234,60 +202,20 @@ function hitIG(IGhandle, callback) {
                 nextURL = "https://www.instagram.com/" + IGhandle + "/media/?max_id=" + result.items[lastURL].id;
                 //console.log(nextURL)
 
-                //console.log("attempt grabImage");
-                // callMethod(nextURL, grabImage);
-                //console.log("done grabImage");
-                callMethod(nextURL);
+                requestify.get(nextURL).then(function(response) {
 
+                    console.log('We didnt find a match, calling findMatch() recursively');
 
-            }
+                    findMatch(IGhandle, response.getBody()).then(function(data){
+                        console.log('inside findMatch(recursive): ' + data);
+                        console.log('resolving recursive');
+                        resolve(data);
+                    });
 
-            drawImage(0);
-
-        }
-    }
-
-    function saveImage(url) {
-      var localUrl = "";
-
-      requestify.get(url).then(function(response) {
-  // Get the response body
-          // console.log(response.getBody());
-          // grabImage(response.getBody());
-
-          //write image to disk
-          // var fs = require('fs');
-          //
-          // fs.writeFile('message.txt', 'Hello Node', function (err) {
-          //   if (err) throw err;
-          //   console.log('It\'s saved!');
-});
-          console.log(response);
-      });
-
-      return localUrl;
-    }
-
-    function drawImage(imageCounter) {
-        if (brunchImgs.length > 0) {
-            //add image source to div in order to draw it on html page
-            // myImage.src = brunchImgs[0];
-            console.log('length of images is: ' + brunchImgs.length);
-            //console.log('brunchImgs: ' + brunchImgs[0]);
+                }); // end of requestify
+            } // end of if statement 
         }
 
-        //add refresh
-        if (foundPic) {
-            console.log('calling getColor()');
-            //getColor();
-        }
-
-
-    }
-
-    //window.drawImage = drawImage;
-
-    callback(brunchImgs[0]);
-
+    }); // end of promise return
 
 }
