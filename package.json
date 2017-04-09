@@ -1,0 +1,17 @@
+{
+  "name": "paula_teareading",
+  "version": "1.0.0",
+  "description": "boo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "image-saver-nodejs": "^1.0.3",
+    "request": "^2.81.0",
+    "shortid": "^2.2.8"
+  }
+}

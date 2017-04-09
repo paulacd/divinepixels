@@ -29,10 +29,13 @@ var pageCount; // this variable keeps track of the number of pages you've search
 //------------------SERVER---------------------------//
 
 'use strict'
-
 var bodyParser = require('body-parser');
 var requestify = require('requestify');
+var request = require('request')
+var fs = require('fs');
+var path = require('path')
 
+var short = require('shortid')
 //Express
 var https = require('https'),
     pem = require('pem'),
@@ -42,15 +45,15 @@ var https = require('https'),
 var port = process.env.PORT || 5555;
 
 pem.createCertificate({days:1, selfSigned:true}, function(err, keys){
-  
+
   var app = express();
 
   console.log("Our server is running on localhost:" + port);
 
-  var ejs = require('ejs');
+  // var ejs = require('ejs');
 
   //Server setup
-  app.engine('.html', ejs.__express);
+  // app.engine('.html', ejs.__express);
   app.set('views', __dirname + '/views');
   app.use(express.static(__dirname + '/public'));
   app.use(bodyParser.json());
@@ -77,7 +80,7 @@ https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(p
     app.get('/instagram/:handle', function(req, res) {
         console.log('in instagram router');
         console.log("Username is: " + req.params.handle);
-        
+
         var IGhandle = req.params.handle;
         var firstPageUrl = "https://www.instagram.com/" + IGhandle + "/media/";
 
@@ -88,15 +91,44 @@ https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(p
         // once the promise resolves so you can use it in the function passed to .then()
         // this allows us to send the image url to the front-end as the response to the front-end's
         // original request
+
         hitIG(IGhandle, firstPageUrl)
             .then( function(imgUrl) {
                 console.log("Sending URL to front-end: ", imgUrl);
-                res.send(imgUrl);
-            });
+
+                var uniqueId = short.generate() // create a unique 6 char code for each images file name
+                // res.send(imgUrl);
+                var imgpath = path.join(__dirname, 'public', uniqueId+'.jpg')
+
+                request.head(imgUrl, function(err, resp, body){
+                  request(imgUrl).pipe(fs.createWriteStream(imgpath)).on('close', function(){
+                    res.send(uniqueId+'.jpg');
+                  })
+                })
+
+                // var writer = fs.WriteFile("imgimg.jpg", imgUrl, {encoding: 'base64'}, function(data){
+                //     console.log(data);
+                // });
+
+                // var s = fs.createReadStream(imgUrl, { encoding: 'base64'});
+                //
+                // s.on('open', function () {
+                //   console.log('opening read stream');
+                //     res.set('Content-Type', 'image/jpeg');
+                //     s.pipe(fs.createWriteStream("./imgimgimg.jpg", { encoding: 'base64'}));
+                //     console.log(res);
+                // });
+                // s.on('error', function (err) {
+                //     // something went wrong
+                //     console.log('there was an error');
+                //     console.log(err);
+                // });
+
+            }); //end of then
 
 
 
-    });
+    }); //end of app.get
 
 
 }); // end of pem
@@ -109,14 +141,14 @@ https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(p
 function hitIG(IGhandle, url) {
 
     console.log("hitting instagram");
-    
+
     return new Promise( function(resolve, reject) {
-        
+
         if (IGhandle != null){
 
             // make the request to the instagram server
             requestify.get(url).then(function(response) {
-                
+
                 // the findMatch function returns a promise where the data being
                 // resolved is the image url
                 findMatch(IGhandle, response.getBody()).then(function(data){
@@ -135,7 +167,7 @@ function hitIG(IGhandle, url) {
 }
 
 // this function takes in a page result as json object and searches through it.
-// 
+//
 function findMatch(IGhandle, result) {
 
     var nextURL;
@@ -165,7 +197,7 @@ function findMatch(IGhandle, result) {
                 // a result
 
                 if(foundPic) break;
-     
+
                 // loop through the array of hashtags to match
                 for (var j = 0; j < regexArray.length; j++) {
 
@@ -191,7 +223,7 @@ function findMatch(IGhandle, result) {
             }
 
             // If we fail to find a match, we need to check the next page, we do
-            // this by recursively calling the findMatch function inside itself. 
+            // this by recursively calling the findMatch function inside itself.
             // Note that if we get to this stage, we havent found a match yet so
             // the promise hasn't resolved yet - we only do this inside the .then()
             // of the recursive findMatch() call.
@@ -213,7 +245,7 @@ function findMatch(IGhandle, result) {
                     });
 
                 }); // end of requestify
-            } // end of if statement 
+            } // end of if statement
         }
 
     }); // end of promise return
