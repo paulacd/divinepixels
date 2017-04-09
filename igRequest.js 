@@ -1,0 +1,53 @@
+//------------------------------IG SCRAPPING------------------------------------------//
+
+function callMethod(successCallback, Iurl) {
+
+    // console.log(url)
+
+    $.ajax({
+        url: Iurl, // this should look like url: 'yourroute/goes here'
+        type: 'GET',
+        success: successCallback,
+        error: function(xhr, textStatus, errorThrown) {
+            console.dir(xhr);
+            console.dir(textStatus);
+            console.dir(errorThrown);
+            //console.log(errorThrown);
+            //evokeEmergencySolution();
+        }
+
+    });
+    //alert("hey");
+
+}
+
+//------------------------------IG SCRAPPING------------------------------------------//
+
+
+//------------------------------COLOR BLOTTING------------------------------------------//
+
+        $('#result').on('load',function() {
+          //do stuff
+          console.log('in getColor');
+          var colorThief = new ColorThief();
+          console.log('step 2');
+          var resultImg = document.getElementById("result");
+
+          resultImg.crossOrigin = "Anonymous";
+          var test = colorThief.getColor(resultImg);
+          // var test = colorThief.getColor(brunchImgs[0]);
+          console.log('step 3');
+          var palette = colorThief.getPalette(resultImg, 2);
+          console.log(test);
+          console.log(palette);
+        });
+
+
+    // function getColor() {
+    //
+    //
+    // }
+
+
+
+};
