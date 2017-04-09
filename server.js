@@ -25,6 +25,7 @@ regexArray.push(reg6);
 regexArray.push(reg7);
 
 var pageCount; // this variable keeps track of the number of pages you've searched through
+var uniqueId; //generate a uniqueId for each IG saved
 
 //------------------SERVER---------------------------//
 
@@ -92,38 +93,18 @@ https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(p
         // this allows us to send the image url to the front-end as the response to the front-end's
         // original request
 
-        hitIG(IGhandle, firstPageUrl)
-            .then( function(imgUrl) {
+        hitIG(IGhandle, firstPageUrl).then( function(imgUrl) {
                 console.log("Sending URL to front-end: ", imgUrl);
 
-                var uniqueId = short.generate() // create a unique 6 char code for each images file name
+                uniqueId = short.generate() // create a unique 6 char code for each images file name
                 // res.send(imgUrl);
                 var imgpath = path.join(__dirname, 'public', uniqueId+'.jpg')
 
                 request.head(imgUrl, function(err, resp, body){
                   request(imgUrl).pipe(fs.createWriteStream(imgpath)).on('close', function(){
                     res.send(uniqueId+'.jpg');
-                  })
-                })
-
-                // var writer = fs.WriteFile("imgimg.jpg", imgUrl, {encoding: 'base64'}, function(data){
-                //     console.log(data);
-                // });
-
-                // var s = fs.createReadStream(imgUrl, { encoding: 'base64'});
-                //
-                // s.on('open', function () {
-                //   console.log('opening read stream');
-                //     res.set('Content-Type', 'image/jpeg');
-                //     s.pipe(fs.createWriteStream("./imgimgimg.jpg", { encoding: 'base64'}));
-                //     console.log(res);
-                // });
-                // s.on('error', function (err) {
-                //     // something went wrong
-                //     console.log('there was an error');
-                //     console.log(err);
-                // });
-
+                  });
+                });
             }); //end of then
 
 

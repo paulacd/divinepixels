@@ -29,8 +29,8 @@ $(document).ready(function() {
                 // body.appendChild(myImage);
                 // var img = response
 
-                var c = colorThief.getColorFromUrl(response);
-                console.log(c);
+                // var c = colorThief.getColorFromUrl(response);
+                // console.log(c);
 
 
                 // getColor(myImage);
@@ -78,13 +78,13 @@ $(document).ready(function() {
         });
     }
 
-    function getColor(fileName) {
+    function getColor(uniqueId) {
 
-      var img = CanvasImage(fileName);
-
+      var img = CanvasImage(uniqueId+'.jpg');
+      console.log(img);
 
       // var test = colorThief.getColor(document.getElementById("result"));
-      var test = colorThief.getColorFromUrl(fileName);
+      var test = colorThief.getColor(img);
         // var palette = colorThief.getPalette(document.getElementById("result"), 2);
         console.log(test);
         // console.log(palette);
