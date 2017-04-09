@@ -26,14 +26,6 @@ $(document).ready(function() {
                 // myImage.src = response;
                 var myImage = document.getElementById('result');
                 myImage.src = response;
-                // body.appendChild(myImage);
-                // var img = response
-
-                // var c = colorThief.getColorFromUrl(response);
-                // console.log(c);
-
-
-                // getColor(myImage);
 
                 // The second runs when the promise
                 // is rejected, and logs the Error specified with the reject() method.
@@ -78,16 +70,21 @@ $(document).ready(function() {
         });
     }
 
-    function getColor(uniqueId) {
+    //call getColor() once it's finished loading
+    $("#result").on('load', function() {
+      getColor();
+    });
 
-      var img = CanvasImage(uniqueId+'.jpg');
-      console.log(img);
+    function getColor() {
 
-      // var test = colorThief.getColor(document.getElementById("result"));
-      var test = colorThief.getColor(img);
-        // var palette = colorThief.getPalette(document.getElementById("result"), 2);
-        console.log(test);
-        // console.log(palette);
+      // var img = CanvasImage(uniqueId+'.jpg');
+      // console.log(img);
+
+      var dominant = colorThief.getColor(document.getElementById("result"));
+      // var dominant = colorThief.getColor(img);
+      var palette = colorThief.getPalette(document.getElementById("result"), 2);
+        console.log(dominant);
+        console.log(palette);
     }
 
 });

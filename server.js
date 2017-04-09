@@ -100,6 +100,7 @@ https.createServer({key: keys.serviceKey, cert: keys.certificate}, app).listen(p
                 // res.send(imgUrl);
                 var imgpath = path.join(__dirname, 'public', uniqueId+'.jpg')
 
+                //writing image into disk 
                 request.head(imgUrl, function(err, resp, body){
                   request(imgUrl).pipe(fs.createWriteStream(imgpath)).on('close', function(){
                     res.send(uniqueId+'.jpg');
