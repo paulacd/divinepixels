@@ -3,6 +3,7 @@ $(document).ready(function() {
     console.log("script loaded!");
 
     var colorThief = new ColorThief();
+    var paletteColors = [];
 
     $("#submitButton").click(function() {
 
@@ -85,6 +86,27 @@ $(document).ready(function() {
       var palette = colorThief.getPalette(document.getElementById("result"), 2);
         console.log(dominant);
         console.log(palette);
+
+        //change div colors based on palette
+        $('#dominant').css('background-color',
+        'rgb(' + dominant[0] + ',' + dominant[1] + ',' + dominant[2] + ')');
+
+        for (var i = 0; i < 3; i++){
+          for (var j = 0; j < 3; j++){
+
+            paletteColors.push(palette[i][j]);
+          }
+        }
+
+        $('#secondary1').css('background-color',
+        'rgb(' + paletteColors[3] + ',' + paletteColors[4] + ',' + paletteColors[5] + ')');
+
+        $('#secondary2').css('background-color',
+        'rgb(' + paletteColors[6] + ',' + paletteColors[7] + ',' + paletteColors[8] + ')');
+
+        console.log(paletteColors)
+
+        console.log('div colors changed');
     }
 
 });
