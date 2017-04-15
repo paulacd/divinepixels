@@ -1,0 +1,17 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "Forever - Algorithmic Composition Using a server and client location",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Or Fleisher",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "socket.io": "^1.5.1"
+  }
+}

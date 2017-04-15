@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forever - Conductor Panel</title>
+	
+	<!--Scoket.io-->
+	<script src="js/lib/socket.io-1.4.5.js"></script>
+
+	<!-- P5.js -->
+	<script src="js/lib/p5.min.js"></script>
+
+	<!-- Tone.js -->
+	<script src="js/lib/Tone.min.js"></script>
+
+	<!--Client Side Global Variables=-->
+	<script src="js/src/global.js"></script>
+
+	<!--Client Side JS Utilities-->
+	<script src="js/src/util.js"></script>
+
+	<!-- Canvas and p5.js Utilities -->
+	<script type="js/src/canvas.js"></script>
+
+	<!--Client Side JS Utilities-->
+	<style type="text/css" src="css/client.css"></style>
+
+</head>
+<body>
+<ul>
+<h1>Forever - Social composition</h1>
+<h2>Conductor Panel</h2>
+<h3>User Count</h3>
+<li id="usr"></li>
+<h3>User ID's</h3>
+<li id="id"></li>
+<h3>Error log</h3>
+<li id="error"></li>
+</ul>
+<!-- <script type="js/client.js"></script> -->
+<script>
+//Global Variables
+var socket, users, id, userGeoPosition;
+
+	//Decale a new socket connection
+	socket = io();
+
+	//Once your connected log it
+ 	socket.on('connect', function(){
+
+ 		socket.emit('introduction', 'conductor');
+
+ 		console.log('Hi Conductor, you are connected to the server');
+
+  	});
+
+	//Wait for a new user from the server save it to a local server
+	socket.on('user', function(count){
+
+		userCounter(count, 'usr');
+
+	});
+var x = 0
+	//When the server sends everybody's data back
+	socket.on('serverGeoData', function(geodata){
+
+		canvasLocations = [];
+
+		//Log the data for debugging
+		// console.log(geodata);
+
+		//Assign this data globally
+		serverGeo = geodata;
+		
+		//Iterate over the amount of clients and map the values to canvas
+		for(var i = 0; i < Object.keys(geodata).length; i++){
+
+			var latlong = serverGeo[Object.keys(serverGeo)[i]];
+
+			var mappedY = map(latlong[0], 90, -90, 0, height);
+			var mappedX = map(latlong[1], -180, 180, 0, width);
+
+			canvasLocations.push([mappedX, mappedY]);
+
+			console.log(mappedX + ' ' + mappedY);
+			
+		}
+
+
+	});
+
+	function preload(){};
+
+	function setup(){
+
+		createCanvas(windowWidth, windowHeight);
+
+	};
+
+	function draw(){
+		background(255);
+
+		for(var i = 0; i < canvasLocations.length; i++){
+			var locations = canvasLocations[i];
+			rect(locations[0], locations[1], 10, 10);			
+		}
+
+
+	};
+</script>
+</body>
+</html>

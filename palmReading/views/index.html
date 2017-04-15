@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>
+		Forever - Alogirithmic Composition
+	</title>
+
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+	<!--Scoket.io-->
+	<script src="js/lib/socket.io-1.4.5.js"></script>
+
+	<!-- jQuery -->
+	<script src="js/lib/jquery-3.1.1.min.js"></script>
+
+	<!-- P5.js -->
+	<script src="js/lib/p5.min.js"></script>
+
+	<!-- p5.sound.js -->
+	<script src="js/lib/p5.sound.min.js"></script>
+
+	<!--Client Side Global Variables=-->
+	<script src="js/src/global.js"></script>
+
+	<!--Client Side JS Utilities-->
+	<script src="js/src/util.js"></script>
+
+	<!-- Canvas and p5.js Utilities -->
+	<script src="js/src/canvas.js"></script>
+
+	<!-- UI lib -->
+	<script src="js/src/ui.js"></script>
+
+	<!-- Mapbox maps -->
+    <script src='js/lib/mapbox-gl.js'></script>
+    <link href='js/lib/mapbox-gl.css' rel='stylesheet' />
+
+	<!--Client Side CSS-->
+	<link rel="stylesheet" href="css/client.css">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lora|Raleway:100,400,700,900" rel="stylesheet">
+
+	<!-- Dat Gui for debugging - clean before deployment -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+
+</head>
+<body>
+<!-- Intro -->
+<div id="intro-container">
+
+	Type your home address: <input id="home" type="textbox"><br><br>
+	<!-- Type your home work/school address:<input id="input2" type="text"><br><br>
+	What is your favorite place in NYC? <input id="input3" type="text"><br><br>
+	What about a second favorite place in NYC? <input id="input3" type="text"><br><br> -->
+  <input id="submitButton" type="button" value="Geocode">
+
+<!-- <div id="explain" class="vertical-align">This is an algoritmic music composition experiment based on your location</div>
+<div id="explain2" class="vertical-align">Please allow location sharing in your browser</div>
+<div id="headphones" class="vertical-align">It is recommended using headphones</div> -->
+
+</div>
+	<!-- Interface - Desktop -->
+	<div id="experience-container">
+	<div id="main-interface">
+		<div id="info-bar">
+			<div id="icon">FOREVER</div>
+			<div id="icon-text">MULTIPLAYER MUSIC COMPOSITION</div>
+			<div id="seperator"></div>
+			<!-- users -->
+			<img width="33" id="userIcon" src="images/ui/users.png" />
+			<div id="userCount"></div>
+			<!-- scales -->
+			<img width="47" id="scaleIcon" src="images/ui/scale.png" />
+			<div id="currentScale"></div>
+		</div>
+	</div>
+
+	<!-- Map container -->
+	<div id="map" class="map mapboxgl-map"></div>
+
+</div>
+
+<!-- Client side app -->
+<script src="js/src/client.js"></script>
+
+</body>
+</html>
