@@ -170,26 +170,39 @@ function initMap(){
       //Add the users layer to the map
       mapboxmap.addSource('drone', { type: 'geojson', data: mapboxusers });
 
+			console.log(mapboxusers);
+
       //Instead of using the mapbox API to draw the users I amp these locations with p5.js and draw the users in the draw function
-      mapboxmap.addLayer({
-          "id": "drone",
-          "type": "symbol",
-          "source": "drone",
-          "layout": {
-              "icon-image": "rocket-15"
-          }
-      });
+      // mapboxmap.addLayer({
+      //     "id": "drone",
+      //     "type": "symbol",
+      //     "source": "drone",
+      //     "layout": {
+      //         "icon-image": "rocket-15"
+      //     }
+      // });
   });
 
 };
 
+$("#submitButton").click(function() {
+	getCoords(geocoder, map);
+});
 
-	$("#submitButton").click(function() {
-		function getCoords();
-}
 
-function getCoords() {
-	
+function getCoords(geocoder, resultsMap) {
+	var address = document.getElementById('home').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
 }
 
 // function buildScales(){
@@ -516,9 +529,9 @@ function initStartEnd(start, end){
 function analyseServerGeoData(geodata){
 
     //Clean the array anytime the server sends over data
-    canvasLocations = [];
+    var canvasLocations = [];
 
-    mapboxusers.features = [];
+    //mapboxusers.features = [];
 
     //Assign this data globally
     serverGeo = geodata;

@@ -18,8 +18,8 @@ var id;
 var userGeoPosition;
 var serverGeo;
 var selector;
-var canvasLocations = [];
-var locations;
+// var canvasLocations = [];
+var locations = [];
 
 //Oscillators
 var SQRosc;

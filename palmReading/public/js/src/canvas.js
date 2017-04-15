@@ -15,16 +15,17 @@ function setup(){
 		initStartEnd(0, width);
 
 		console.log('p5 Canvas Initialised');
+		drawUsers();
 
 };
 
 function draw(){
 
 		//Yes it means clear
-		clear();
+		//clear();
 
 		//Logic for drawing and controlling the users
-		drawUsers();
+		// drawUsers();
 
 		//Control the filter over time
 		//controlFilter();
@@ -38,22 +39,24 @@ function draw(){
 function drawUsers(){
 	if(start === true){
 		//Iterate over the array that stores users pixel postions
+		console.log(canvasLocations);
+		
 		for(var i = 0; i < canvasLocations.length; i++){
-
-			var locations = canvasLocations[i];
+			locations = canvasLocations[i];
+			console.log('inside canvasLocation array. canvasLocations is: ' + canvasLocations[i]);
 
 			//Draw a rect for each user
 			noStroke();
-			fill(0);
-			ellipse(locations[0], locations[1], 10, 10);
-			fill(0,0,0, 25);
-			ellipse(locations[0], locations[1], 50 + (sin(angle) * diameter/2) + diameter/2, 50 + (sin(angle) * diameter/2) + diameter/2);
-			noFill();
-			strokeWeight(1);
-			stroke(0);
-			ellipse(locations[0], locations[1], (cos(angle) * diameter/2) + diameter/2, (cos(angle) * diameter/2) + diameter/2);
-			ellipse(locations[0], locations[1], (cos(angle + 0.5) * diameter), (cos(angle + 0.5) * diameter));
-			ellipse(locations[0], locations[1], (cos(angle + 1) * diameter) - diameter, (cos(angle + 1) * diameter) - diameter);
+			fill(255, 0, 0);
+			ellipse(locations[0], locations[1], 100, 100);
+			// fill(0,0,0, 25);
+			// ellipse(locations[0], locations[1], 50 + (sin(angle) * diameter/2) + diameter/2, 50 + (sin(angle) * diameter/2) + diameter/2);
+			// noFill();
+			// strokeWeight(1);
+			// stroke(0);
+			// ellipse(locations[0], locations[1], (cos(angle) * diameter/2) + diameter/2, (cos(angle) * diameter/2) + diameter/2);
+			// ellipse(locations[0], locations[1], (cos(angle + 0.5) * diameter), (cos(angle + 0.5) * diameter));
+			// ellipse(locations[0], locations[1], (cos(angle + 1) * diameter) - diameter, (cos(angle + 1) * diameter) - diameter);
 
 			//If you hover over the user icon
 			if(playerClick === true){
@@ -88,6 +91,10 @@ function drawUsers(){
 
 	// console.log((sin(angle) * diameter/2) + diameter/2);
 };
+
+function mousePressed(){
+	canvasLocations.push([mouseX, mouseY]);
+}
 
 
 	//Resize Canvas to Fit the Screen

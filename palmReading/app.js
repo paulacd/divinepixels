@@ -165,11 +165,11 @@ setInterval(function(){
 	// console.log(sockets);
 	// console.log(geolocations);
 
-	//If geolocations has geodata emit it to all users every half second
+	//If geolocations has geodata emit it to all users every minute
 	if(Object.keys(geolocations) != 0 ){
 
 		io.sockets.emit('serverGeoData', geolocations);
 
 	}
 
-}, 500);
+}, 6000);
