@@ -18,7 +18,7 @@ var id;
 var userGeoPosition;
 var serverGeo;
 var selector;
-// var canvasLocations = [];
+var canvasLocations = [];
 var locations = [];
 
 //Oscillators

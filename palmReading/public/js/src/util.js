@@ -529,7 +529,7 @@ function initStartEnd(start, end){
 function analyseServerGeoData(geodata){
 
     //Clean the array anytime the server sends over data
-    var canvasLocations = [];
+    // canvasLocations = [];
 
     //mapboxusers.features = [];
 
@@ -561,6 +561,9 @@ bBox._ne.lat, height, 0);
 
       //Store user pixel location for p5
       canvasLocations.push([mappedX, mappedY]);
+			console.log("**********************");
+			console.log(canvasLocations);
+			console.log("**********************");
 
       //Store user location for MapBox
       var userGeoJson = {

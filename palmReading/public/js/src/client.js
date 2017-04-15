@@ -41,7 +41,7 @@ Wrriten by juniorxsound (http://phenomenalabs.com)
 
 	//When the server sends everybody's data back
 	socket.on('serverGeoData', function(geodata){
-
+		console.log(" inside socket on serverGeoData");
 		analyseServerGeoData(geodata);
 
 	});

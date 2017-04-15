@@ -160,12 +160,12 @@ app.get('/*', (req, res) => {
 });
 
 setInterval(function(){
-//Logs for data in the server
-	// console.log(usersCounter);
-	// console.log(sockets);
-	// console.log(geolocations);
-
-	//If geolocations has geodata emit it to all users every minute
+// //Logs for data in the server
+// 	// console.log(usersCounter);
+// 	// console.log(sockets);
+// 	// console.log(geolocations);
+//
+// 	//If geolocations has geodata emit it to all users every minute
 	if(Object.keys(geolocations) != 0 ){
 
 		io.sockets.emit('serverGeoData', geolocations);
