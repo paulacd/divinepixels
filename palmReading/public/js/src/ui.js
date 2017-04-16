@@ -55,7 +55,7 @@ function initInterface(){
 							start = true;
 
 							$('#headphones').delay(3000).fadeOut(500, function(){
-							
+
 								$('#intro-container').fadeOut(1000);
 
 							});

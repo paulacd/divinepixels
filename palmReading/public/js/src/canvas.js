@@ -26,11 +26,11 @@ function draw(){
 
 		//Logic for drawing and controlling the users
 		if(canvasLocations.length > 0){
-			console.log("it exists");
+			//console.log("it exists");
 			drawUsers();
 		}
 		else {
-			console.log("not yet");
+			//console.log("not yet");
 		}
 		// drawUsers();
 
@@ -48,7 +48,7 @@ function draw(){
 function drawUserGeoLoc() {
 	for(var i = 0; i < canvasLocations.length; i++){
 		locations = canvasLocations[i];
-		console.log('inside canvasLocation array. canvasLocations is: ' + canvasLocations[i]);
+		//console.log('inside canvasLocation array. canvasLocations is: ' + canvasLocations[i]);
 
 		//Draw a rect for each user
 		noStroke();
@@ -70,15 +70,15 @@ function drawUserGeoLoc() {
 
 //Draw users
 function drawUsers(){
-	console.log(canvasLocations);
-	console.log(canvasLocations.lenght);
+	//console.log(canvasLocations);
+	//console.log(canvasLocations.length);
 	if(start === true){
 		//Iterate over the array that stores users pixel postions
 
 
 		for(var i = 0; i < canvasLocations.length; i++){
 			locations = canvasLocations[i];
-			console.log('inside canvasLocation array. canvasLocations is: ' + canvasLocations[i]);
+			//console.log('inside canvasLocation array. canvasLocations is: ' + canvasLocations[i]);
 		}
 
 	}
@@ -89,9 +89,17 @@ function drawUsers(){
 };
 
 function mousePressed(){
-	locations.push([mouseX, mouseY]);
-	fill(255, 255, 0);
-	ellipse(mouseX,mouseY, 10, 10);
+
+	console.log('length of locations array: ' + locations.length);
+	if (locations.length < 5){
+		locations.push([mouseX, mouseY]);
+		fill(255, 0, 255);
+		ellipse(mouseX,mouseY, 10, 10);
+	} else {
+		console.log('no more locations allowed');
+		//once you're done putting in the points, draw the lines
+		//serve up the reading
+	}
 }
 
 

@@ -151,7 +151,7 @@ function initMap(){
       container: 'map', // container id
       style: 'mapbox://styles/juniorxsound/ciwdqlveu00102pnatdlaaes0', //stylesheet location
       center: [-73.98, 40.74278],
-      zoom: 11, // starting zoom
+      zoom: 13.5, // starting zoom
       zoomControl: true
       };
 
