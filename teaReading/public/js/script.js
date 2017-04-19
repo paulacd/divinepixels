@@ -1,3 +1,15 @@
+var domR;
+var domG;
+var domB;
+
+var secR1;
+var secG1;
+var secB1;
+
+var secR2;
+var secG2;
+var secB2;
+
 // A $( document ).ready() block.
 $(document).ready(function() {
     console.log("script loaded!");
@@ -91,6 +103,10 @@ $(document).ready(function() {
         $('#dominant').css('background-color',
             'rgb(' + dominant[0] + ',' + dominant[1] + ',' + dominant[2] + ')');
 
+            domR = dominant[0];
+            domG = dominant[1];
+            domB = dominant[2];
+
             var paletteColors = [];
 
         for (var i = 0; i < 3; i++) {
@@ -112,6 +128,16 @@ $(document).ready(function() {
         console.log(paletteColors)
 
         console.log('div colors changed');
+
+        secR1 = paletteColors[3];
+        secG1 = paletteColors[4];
+        secB1 = paletteColors[5];
+
+        secR2 = paletteColors[6];
+        secG2 = paletteColors[7];
+        secB2 = paletteColors[8];
+
+        colorFortune();
     }
 
 });
