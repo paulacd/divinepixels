@@ -1,23 +1,21 @@
 
-
 function colorFortune() {
 
   console.log("domR: " + domR + ", " + "domG: " + domG + ", " + "domB: " + domB);
 
 //-------------1: Dominant color HSV individual color reading-------------
 
-  //var color = tinycolor("rgb(domR, domG, domB)");
+  //set RGB color of dominant hue
   var color = tinycolor({r: domR, g: domG, b: domB});
-  //console.log(color.toHsv());
+
+  //transform RGB to HSV
   var returnHSV = color.toHsv();
-  //console.log(color.toHsvString());
 
-    //console.log(Math.round(returnHSV.h));
-    // Math.round(returnHSV.s);
-    // Math.round(returnHSV.v);
-
+  //Round the float returned to an integer
   var roundedH = Math.round(returnHSV.h);
 
+
+//determine your reading based on the hue number from the dominant reading
 //if red (0 or 360)
 if (roundedH >= 0 && roundedH < 20){
   //energy, war, danger, strength, power, determination, passion, desire, love
@@ -69,12 +67,40 @@ console.log("you're a person full of power and determination, but beware! your p
 
 }
 
-
-
-
   //---------------------2: warm vs cool-----------------------
   //warm: energy, brightness, action
   //cool: calm, peace, serenity
+
+  var secColor1 = tinycolor({r: secR1, g: secG1, b: secB1});
+  var secColor2 = tinycolor({r: secR2, g: secG2, b: secB2});
+
+  var secColorHSV1 = secColor1.toHsv();
+  var secColorHSV2 = secColor2.toHsv();
+
+  var roundedSecColH1 = Math.round(secColorHSV1.h);
+  var roundedSecColH2 = Math.round(secColorHSV2.h);
+
+  var cool = 0;
+
+  //if dominant hue is cool, add +1 to the cool variable
+  if (roundedH >= 120 && roundedH < 300){
+    cool++
+  }
+
+  if (roundedSecColH1 >= 120 && roundedSecColH1 < 300){
+    cool++
+  }
+
+  if (roundedSecColH2 >= 120 && roundedSecColH2 < 300){
+    cool++
+  }
+
+  if (cool >=2){
+    console.log("your life calls for action right now. Bring brightness and energy to everything you do. Remeber that although change might be painful, it's usually a good thing");
+  } else {
+    console.log("your life calls calmness right now. Take a second to sit with yourself and reflect on your life, peace of mind if needed at this time.");
+  }
+
 
 
 
