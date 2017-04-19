@@ -94,12 +94,29 @@ function mousePressed(){
 	if (locations.length < 5){
 		locations.push([mouseX, mouseY]);
 		fill(255, 0, 255);
-		ellipse(mouseX,mouseY, 10, 10);
-	} else {
+		ellipse(mouseX,mouseY, 15, 15);
+	} else if (locations.length == 5) {
+		drawLines();
+	}
+	else {
 		console.log('no more locations allowed');
+		console.log(locations);
 		//once you're done putting in the points, draw the lines
 		//serve up the reading
 	}
+}
+
+function drawLines() {
+	strokeWeight(3);
+	stroke(255, 0, 255);
+	//line 1
+	line(locations[0], locations[1], locations[2][0], locations[2][1]);
+	//line 2
+	line(locations[2][0], locations[2][1], locations[3][0], locations[3][1]);
+	//line 3
+	line(locations[3][0], locations[3][1], locations[4][0], locations[4][1]);
+	//line 4
+	line(locations[0], locations[1], locations[4][0], locations[4][1]);
 }
 
 
