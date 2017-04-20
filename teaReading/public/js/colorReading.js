@@ -1,7 +1,7 @@
 
 function colorFortune() {
 
-  console.log("domR: " + domR + ", " + "domG: " + domG + ", " + "domB: " + domB);
+  //console.log("domR: " + domR + ", " + "domG: " + domG + ", " + "domB: " + domB);
 
 //-------------1: Dominant color HSV individual color reading-------------
 
@@ -27,7 +27,7 @@ if (roundedH >= 0 && roundedH < 20){
   //joy, enthusiasm, fascination, happiness, creativity, determination, attraction
   //success, encouragement, stimulation
 
-  console.log("joy and enthusiasm fill your life right now. It's a moment for you to explore your creativitiy and seek stimulation. Success will follow");
+  console.log("joy and enthusiasm fill your life right now. It's a moment for you to explore your creativity and seek stimulation. Success will follow");
 
 //if yellow (60)
 } else if (roundedH >= 50 && roundedH < 70){
@@ -96,21 +96,69 @@ console.log("you're a person full of power and determination, but beware! your p
   }
 
   if (cool >=2){
-    console.log("your life calls for action right now. Bring brightness and energy to everything you do. Remeber that although change might be painful, it's usually a good thing");
+    console.log("your life calls for action right now. Bring brightness and energy to everything you do. Remember that although change might be painful, it's usually a good thing");
   } else {
-    console.log("your life calls calmness right now. Take a second to sit with yourself and reflect on your life, peace of mind if needed at this time.");
+    console.log("your life calls for calmness right now. Take a second to sit with yourself and reflect on your life, peace of mind is needed at this time.");
   }
 
 
 
-
-
   //----------------------3: color scheme----------------------------
-  //comprementary vs analogous vs tiradic
+  //complementary vs analogous vs tiradic
+
+//COMPLEMENTARY
+//Colors that are opposite each other on the color wheel are considered to be complementary colors (example: red and green).
+//The high contrast of complementary colors creates a vibrant look especially when used at full saturation. This color scheme must be managed well so it is not jarring.
+//Complementary colors are tricky to use in large doses, but work well when you want something to stand out.
+//Complementary colors are really bad for text.
+
+//The split-complementary color scheme is a variation of the complementary color scheme. In addition to the base color, it uses the two colors adjacent to its complement.
+//This color scheme has the same strong visual contrast as the complementary color scheme, but has less tension.
+//The split-complimentary color scheme is often a good choice for beginners, because it is difficult to mess up.
+
+//CONTRAST, TENSION, EASY TO GET ALONG, STRONG SENSE
+
+var largerNum = roundedSecColH1 > roundedSecColH2 ? roundedSecColH1 : roundedSecColH2
+var smallerNum = roundedSecColH1 > roundedSecColH2 ? roundedSecColH2 : roundedSecColH1
+
+console.log('largerNum: ' + largerNum + ' , smallerNum: ' + smallerNum);
+
+if ((largerNum <= roundedH + 225 && largerNum >= roundedH + 195) &&
+    (smallerNum <= roundedH + 165 && smallerNum >= roundedH + 135)) {
+        console.log('You might be feeling some tension in your life right now. Either with people, sutiations or environments. Keep your cool. You have a strong sense of what needs to be done. Be extra mindful in how you come across to others and how your actions affect them. This could spare you many headhacjes (or cause some!)');
+        console.log('complementary');
+}
 
 
 
+//ANALOGOUS
+//Analogous color schemes use colors that are next to each other on the color wheel. They usually match well and create serene and comfortable designs.
+//Analogous color schemes are often found in nature and are harmonious and pleasing to the eye.
+//Make sure you have enough contrast when choosing an analogous color scheme.
+//Choose one color to dominate, a second to support. The third color is used (along with black, white or gray) as an accent.
 
+// MATCHED WELL, SERENE & COMFORTABLE SETTINGS. PLEASING TO THE EYE, NATURE.
+
+if ((largerNum <= roundedH + 45 && largerNum >= roundedH + 15) &&
+    (smallerNum <= roundedH - 15 && smallerNum >= roundedH - 45)) {
+        console.log('Nature would do you well right now. Get out of the city, even for a day, and find serenity in nature and in yourself. A reinvigorating afternoon ');
+        console.log('analogous');
+    }
+
+
+
+//TRIAD
+//A triadic color scheme uses colors that are evenly spaced around the color wheel.
+//Triadic color harmonies tend to be quite vibrant, even if you use pale or unsaturated versions of your hues.
+//To use a triadic harmony successfully, the colors should be carefully balanced - let one color dominate and use the two others for accent.
+
+//BALANCE, HARMONY, DELICATE, QUIET VIBRANCY
+
+if ((largerNum <= roundedH + 135 && largerNum >= roundedH + 105) &&
+    (smallerNum <= roundedH + 225 && smallerNum >= roundedH + 255)) {
+      console.log();
+      console.log('Triadic');
+    }
 
 
 

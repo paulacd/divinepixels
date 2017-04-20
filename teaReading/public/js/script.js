@@ -12,7 +12,7 @@ var secB2;
 
 // A $( document ).ready() block.
 $(document).ready(function() {
-    console.log("script loaded!");
+    //console.log("script loaded!");
 
     var colorThief = new ColorThief();
 
@@ -35,7 +35,7 @@ $(document).ready(function() {
                 // Call the function with the URL we want to load, but then chain the
                 // promise then() method on to the end of it. This contains two callbacks
 
-                console.log(response);
+                //console.log(response);
                 // myImage.src = response;
                 var myImage = document.getElementById('result');
                 myImage.src = response;
@@ -96,8 +96,8 @@ $(document).ready(function() {
         var dominant = colorThief.getColor(document.getElementById("result"));
         // var dominant = colorThief.getColor(img);
         var palette = colorThief.getPalette(document.getElementById("result"), 2);
-        console.log(dominant);
-        console.log(palette);
+        //console.log(dominant);
+        //console.log(palette);
 
         //change div colors based on palette
         $('#dominant').css('background-color',
@@ -125,9 +125,9 @@ $(document).ready(function() {
             'rgb(' + paletteColors[6] + ',' + paletteColors[7] + ',' + paletteColors[8] + ')');
 
 
-        console.log(paletteColors)
+        //console.log(paletteColors)
 
-        console.log('div colors changed');
+        //console.log('div colors changed');
 
         secR1 = paletteColors[3];
         secG1 = paletteColors[4];

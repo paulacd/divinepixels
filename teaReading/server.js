@@ -7,13 +7,30 @@ var regexArray = [];
 var brunchImgs = [];
 
 //find a picture based on a caption
-var reg1 = /#brunch/;
-var reg2 = /#brunching/;
-var reg3 = /#breakfast/;
-var reg4 = /#sundaybrunch/;
-var reg5 = /#eggs/;
-var reg6 = /#pancakes/;
-var reg7 = /#bacon/;
+// var reg1 = /#brunch/;
+// var reg2 = /#brunching/;
+// var reg3 = /#breakfast/;
+// var reg4 = /#sundaybrunch/;
+// var reg5 = /#eggs/;
+// var reg6 = /#pancakes/;
+// var reg7 = /#bacon/;
+
+// var reg1 = /#love/;
+// var reg2 = /#foodie/;
+// var reg3 = /#foodporn/;
+// var reg4 = /#foodgasm/;
+// var reg5 = /#nom/;
+// var reg6 = /#food/;
+// //var reg7 = /#🍕/;
+// var reg7 = /#thesis/;
+
+var reg1 = /#love/;
+var reg2 = /#nofilter/;
+var reg3 = /#tbt/;
+var reg4 = /#wcw/;
+var reg5 = /#nom/;
+var reg6 = /#food/;
+var reg7 = /#thesis/;
 
 //push all hashtags
 regexArray.push(reg1);
