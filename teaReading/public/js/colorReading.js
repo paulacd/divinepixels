@@ -21,6 +21,8 @@ if (roundedH >= 0 && roundedH < 20){
   //energy, war, danger, strength, power, determination, passion, desire, love
 
   console.log("you're a person full of power and determination, but beware! your passion might lead to some dangerous situations");
+//random word from the red color 
+  words.red[Math.floor(Math.random(0, words.red.length))]
 
 //if orange (30)
 } else if (roundedH >= 20 && roundedH < 40){
