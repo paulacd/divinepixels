@@ -16,8 +16,12 @@ $(document).ready(function() {
 
     var colorThief = new ColorThief();
 
+    $(".output").hide();
 
     $("#submitButton").click(function() {
+
+      $("#IGsubmit").hide();
+      $(".output").show();
 
         var user = $("#ig").val();
         console.log('user: ', user);

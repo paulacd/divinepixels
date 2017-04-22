@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
+
 body{
 	margin: 0px;
 	padding: 0px;
 	height: 100%;
+  font-family: 'PT Mono', monospace;
+
 }
 .flexcontainer {
 	height:100vh;
@@ -9,9 +13,13 @@ body{
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
+  background: linear-gradient(0deg, #260055, #6733aa);
 }
 
 .centerdiv {
+  z-index: 100;
+  padding: 10%;
+  margin: 20px;
 }
 
 .centerRow {
@@ -27,4 +35,54 @@ body{
 
 #secondary2 {
   position: absolute;
+}
+
+.column2 {
+  margin: 0px;
+  padding-left: 50px;
+  width: 50%;
+  color: white;
+  font-size: 24px;
+  display: inline-block;
+}
+
+.output{
+  width: 100%;
+  display: flex;
+}
+
+#IGsubmit {
+  color: white;
+  font-size: 24px;
+}
+
+#pattern {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('../assets/bg-pattern.png');
+  background-repeat: repeat;
+
+}
+
+#refreshButton {
+  font-size: 24px;
+  padding: 14px 40px;
+}
+
+.btnStyle{
+  background-color: #555555;
+  /*padding: 12px 28px;*/
+  border-radius: 4px;
+  color: white;
+  font-family: 'PT Mono', monospace;
+  border: 0px;
+  position:relative;
+  top:50%;
+  left:30%;
+  margin: 50px;
+  font-size: 24px;
+  padding: 14px 40px;
 }

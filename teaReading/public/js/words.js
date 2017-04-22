@@ -1,7 +1,7 @@
 var words = {
   "red": [
     "energy",
-    "war",
+    "action",
     "danger",
     "strength",
     "power",
@@ -23,8 +23,8 @@ var words = {
     "stimulation"
   ],
   "yellow": [
-    "cheers",
-    "bright",
+    "cheerfulness",
+    "brightness",
     "honor",
     "loyalty",
     "cowardice",
@@ -60,7 +60,7 @@ var words = {
   ],
   "pink": [
     "energy",
-    "war",
+    "gumption",
     "danger",
     "strength",
     "power",
@@ -73,33 +73,21 @@ var words = {
 }
 
 var sentences = [
-  "You're a person full of {} and {}, but beware! your passion might lead to some dangerous situations.",
-  "{} & {} fill your life right now. It's a moment for you to explore your BLANK and seek stimulation.",
-  "Life is giving you a moment of {} and {}. Take it as it is, and embrace what that means for you. It's the time to regain your {} in other and yourself. Only good things will come of that.",
+  "You're a person full of {} and {}, but beware! your passion might lead to some dangerous situations. Regain your {} and tread lightly",
+  "{} & {} fill your life right now. It's a moment for you to explore your {} and seek stimulation.",
+  "Life is giving you a moment of {} and {}. Take it as it is, and embrace what that means for you. It's the time to regain your {} in others and yourself. Only good things will come of that.",
   "There is {} in your actions right now. {} surrounds you, and that will power your {} and lead you to new uncharted places. Take a chance."
 ]
 
+var warmSentence = [
+  "Your life calls for action right now. Bring brightness and energy to everything you do. Remember that although change might be painful, it's usually a good thing.",
+  "Feel the energy of the season flow through you. Embrace the change it brings, sometimes reaching for the sky grouds you in your roots."
+]
 
-
-
-// 1 - you're a person full of BLANK and BLANK, but beware! your passion might lead to some dangerous situations.
-// 2 - BLANK & BLANK fill your life right now. It's a moment for you to explore your BLANK and seek stimulation.
-// 3 - Life is giving you a moment of BLANK and BLANK. Take it as it is, and embrace what that means for you. It's the time to regain your BLANK in other and yourself. Only good things will come of that.
-// 4 - There is BLANK in your actions right now. BLANK surrounds you, and that will power your BLANK and lead you to new uncharted places. Take a chance.
-// 5 -
-
-
-//you're a person full of power and determination, but beware! your passion might lead to some dangerous situations
-//joy and enthusiasm fill your life right now. It's a moment for you to explore your creativity and seek stimulation. Success will follow
-//your are surrounded by a cheerfulness that cannot be denied. Your intellect is being energized and the loyalty of your friends is stronger than ever. Rejoice in this moment of your life
-//There is a wisdom to your actions lately that can't be denied. You are finding growth and harmony in your life and that will lead you to places were your confidence will shine
-//life is giving you a moment of stability and healing. Take it. Take the moment to regain your trust and faith in others and yourself. Only good things will come of that
-//There is power to your actions right now. A mysticism surrounds you that will power your ambition and lead you to new heights. Embrace it
-//life is giving a sweet tender kiss to you right now. Be playful, embrace the romance, smell the love in the air
-
-
-
-
+var coolSentence = [
+  "Your life calls for calmness right now. Take a second to sit with yourself and reflect on your life, peace of mind is needed at this time.",
+  "Take a second to stop and smell the roses. Find serenity for your mind and soul. Disconnect to reconnect."
+]
 
 //warm: energy, brightness, action
 //cool: calm, peace, serenity

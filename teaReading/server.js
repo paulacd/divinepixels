@@ -115,12 +115,12 @@ http.createServer(app).listen(port);
 
                 uniqueId = short.generate() // create a unique 6 char code for each images file name
                 // res.send(imgUrl);
-                var imgpath = path.join(__dirname, 'public', uniqueId+'.jpg')
+                var imgpath = path.join(__dirname, 'public', 'imgs/' + uniqueId+'.jpg')
 
                 //writing image into disk
                 request.head(imgUrl, function(err, resp, body){
                   request(imgUrl).pipe(fs.createWriteStream(imgpath)).on('close', function(){
-                    res.send(uniqueId+'.jpg');
+                    res.send('imgs/' + uniqueId+'.jpg');
                   });
                 });
             }); //end of then

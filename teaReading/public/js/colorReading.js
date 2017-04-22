@@ -110,45 +110,53 @@ function colorFortune() {
     //warm: energy, brightness, action
     //cool: calm, peace, serenity
 
-    // var secColor1 = tinycolor({
-    //     r: secR1,
-    //     g: secG1,
-    //     b: secB1
-    // });
-    // var secColor2 = tinycolor({
-    //     r: secR2,
-    //     g: secG2,
-    //     b: secB2
-    // });
-    //
-    // var secColorHSV1 = secColor1.toHsv();
-    // var secColorHSV2 = secColor2.toHsv();
-    //
-    // var roundedSecColH1 = Math.round(secColorHSV1.h);
-    // var roundedSecColH2 = Math.round(secColorHSV2.h);
-    //
-    // var cool = 0;
-    //
-    // //if dominant hue is cool, add +1 to the cool variable
-    // if (roundedH >= 120 && roundedH < 300) {
-    //     cool++
-    // }
-    //
-    // if (roundedSecColH1 >= 120 && roundedSecColH1 < 300) {
-    //     cool++
-    // }
-    //
-    // if (roundedSecColH2 >= 120 && roundedSecColH2 < 300) {
-    //     cool++
-    // }
-    //
-    // if (cool >= 2) {
-    //     console.log("your life calls for action right now. Bring brightness and energy to everything you do. Remember that although change might be painful, it's usually a good thing");
-    // } else {
-    //     console.log("your life calls for calmness right now. Take a second to sit with yourself and reflect on your life, peace of mind is needed at this time.");
-    // }
+    var secColor1 = tinycolor({
+        r: secR1,
+        g: secG1,
+        b: secB1
+    });
+    var secColor2 = tinycolor({
+        r: secR2,
+        g: secG2,
+        b: secB2
+    });
+
+    var secColorHSV1 = secColor1.toHsv();
+    var secColorHSV2 = secColor2.toHsv();
+
+    var roundedSecColH1 = Math.round(secColorHSV1.h);
+    var roundedSecColH2 = Math.round(secColorHSV2.h);
+
+    var cool = 0;
+
+    //if dominant hue is cool, add +1 to the cool variable
+    if (roundedH >= 120 && roundedH < 300) {
+        cool++
+    }
+
+    if (roundedSecColH1 >= 120 && roundedSecColH1 < 300) {
+        cool++
+    }
+
+    if (roundedSecColH2 >= 120 && roundedSecColH2 < 300) {
+        cool++
+    }
+
+
+
+    if (cool >= 2) {
+        //console.log("your life calls for action right now. Bring brightness and energy to everything you do. Remember that although change might be painful, it's usually a good thing");
+        var randWarm = warmSentence[Math.floor(Math.random() * warmSentence.length)];
+        console.log(randWarm);
+        document.getElementById('reading2').innerHTML = randWarm;
+
+    } else {
+        //console.log("your life calls for calmness right now. Take a second to sit with yourself and reflect on your life, peace of mind is needed at this time.");
+        var randCool = coolSentence[Math.floor(Math.random() * coolSentence.length)];
+        console.log(randCool);
+        document.getElementById('reading2').innerHTML = randCool;
+    }
 }
-//createSentence(colorWord)
 
 
 function createSentence(arr) {
@@ -164,6 +172,7 @@ function createSentence(arr) {
     var randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
 
     console.log(randomSentence.format(arr[0], arr[1], arr[2]));
+    document.getElementById('reading1').innerHTML = randomSentence.format(arr[0], arr[1], arr[2]);
 }
 
 function pickWords(color) {
@@ -187,3 +196,9 @@ function pickWords(color) {
 
         createSentence(color_words)
     }
+
+    $("#refreshButton").click(function() {
+      $("#ig").val('');
+      $("#IGsubmit").show();
+      $(".output").hide();
+    });

@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
-  <script src="js/lib/jquery.min.js"></script>
-  <script type='text/javascript' src='js/tinycolor.js'></script>
-  <script src="js/words.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body style="background-color: white">
+    <script src="js/lib/jquery.min.js"></script>
+    <script type='text/javascript' src='js/tinycolor.js'></script>
+    <script src="js/words.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
     <div class="flexcontainer">
-    	<div class="centerdiv">
-            <h1 style='center'>Instagram Tasseomancy</h1>
+      <div id="pattern"></div>
+        <div class="centerdiv">
+            <div id="IGsubmit">
+                <h1 style='center'>Instagram Tasseomancy</h1>
 
-            <form>
-          Instagram account/handle: <input id="ig" type="text" name="usrname"><br>
-          <input type="button" value="Submit" id="submitButton">
-        </form>
+                <form>
+                    Instagram account/handle: <input id="ig" type="text" name="usrname"><br>
+                    <input type="button" value="Submit" id="submitButton" class="btnStyle"><br>
+                </form>
+            </div>
+            <div class="output">
+              <div class="column1">
+                  <div id="div1" width="250" height="400">
+                      <img id="result" src="" />
+                  </div>
 
-        <div id="div1" width="250" height="400">
-          <img id="result" src="" />
-        </div>
+                  <div id="dominant" style="width: 640px; height: 200px"></div>
+                  <div id="secondary1" style="width: 320px; height: 200px; display: inline-block"></div>
+                  <div id="secondary2" style="width: 320px; height: 200px; display: inline-block"></div>
+              </div>
+              <div class="column2">
+                <p id="reading1"></p>
+                <p id="reading2"></p>
+                <input type="button" value="Refresh" id="refreshButton" class="btnStyle"><br>
+              </div>
+            </div>
 
-        <div id="dominant" style="width: 640px; height: 200px"></div>
-        <div id="secondary1" style="width: 320px; height: 200px; display: inline-block"></div>
-        <div id="secondary2" style="width: 320px; height: 200px; display: inline-block"></div>
+            <script src="js/script.js"></script>
+            <script src="js/color-thief.js"></script>
+            <script src="js/colorReading.js"></script>
+</body>
 
-                <script src="js/script.js"></script>
-                <script src="js/color-thief.js"></script>
-                <script src="js/colorReading.js"></script>
-  </body>
 </html>
