@@ -72,6 +72,22 @@ var words = {
 
 }
 
+var sentences = [
+  "You're a person full of {} and {}, but beware! your passion might lead to some dangerous situations.",
+  "{} & {} fill your life right now. It's a moment for you to explore your BLANK and seek stimulation.",
+  "Life is giving you a moment of {} and {}. Take it as it is, and embrace what that means for you. It's the time to regain your {} in other and yourself. Only good things will come of that.",
+  "There is {} in your actions right now. {} surrounds you, and that will power your {} and lead you to new uncharted places. Take a chance."
+]
+
+
+
+
+// 1 - you're a person full of BLANK and BLANK, but beware! your passion might lead to some dangerous situations.
+// 2 - BLANK & BLANK fill your life right now. It's a moment for you to explore your BLANK and seek stimulation.
+// 3 - Life is giving you a moment of BLANK and BLANK. Take it as it is, and embrace what that means for you. It's the time to regain your BLANK in other and yourself. Only good things will come of that.
+// 4 - There is BLANK in your actions right now. BLANK surrounds you, and that will power your BLANK and lead you to new uncharted places. Take a chance.
+// 5 -
+
 
 //you're a person full of power and determination, but beware! your passion might lead to some dangerous situations
 //joy and enthusiasm fill your life right now. It's a moment for you to explore your creativity and seek stimulation. Success will follow

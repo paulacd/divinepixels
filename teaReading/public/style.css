@@ -24,3 +24,7 @@ body{
     -webkit-justify-content: center;
     justify-content: center;
 }
+
+#secondary2 {
+  position: absolute;
+}
