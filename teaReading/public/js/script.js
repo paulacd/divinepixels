@@ -21,7 +21,6 @@ $(document).ready(function() {
     $("#submitButton").click(function() {
 
       $("#IGsubmit").hide();
-      $(".output").show();
 
         var user = $("#ig").val();
         console.log('user: ', user);
@@ -65,16 +64,22 @@ $(document).ready(function() {
             // Standard XHR to load an image
             var request = new XMLHttpRequest();
             request.open('GET', '/instagram/' + username);
+            console.log("SHow loader")
+            //show gif
 
             // When the request loads, check whether it was successful
             request.onload = function() {
                 if (request.status === 200) {
                     // If successful, resolve the promise by passing back the request response
                     resolve(request.response);
+                    $(".output").show();
                 } else {
                     // If it fails, reject the promise with a error message
                     reject(Error('Image didn\'t load successfully; error code:' + request.statusText));
+                    //create div with error message
                 }
+                console.log("HIde loader")
+                //hide gif
             };
 
             request.onerror = function() {

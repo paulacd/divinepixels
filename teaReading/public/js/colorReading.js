@@ -198,7 +198,18 @@ function pickWords(color) {
     }
 
     $("#refreshButton").click(function() {
+      console.log("clearing");
+      $('#result').attr("src","");
+      $('#reading1').html("")
+      $('#reading2').html("")
+      console.log("cleared");
       $("#ig").val('');
       $("#IGsubmit").show();
       $(".output").hide();
+      // $(".colorDivs").hide();
+      // $("#column2").empty();
+      $("#dominant").css({background: 'transparent'});
+      $("#secondary1").css({background: 'transparent'});
+      $("#secondary2").css({background: 'transparent'});
+
     });
