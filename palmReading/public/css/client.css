@@ -1,18 +1,4 @@
-/*
-      ___          ___          ___          ___         ___          ___          ___     
-     /\  \        /\  \        /\  \        /\  \       /\__\        /\  \        /\  \    
-    /::\  \      /::\  \      /::\  \      /::\  \     /:/  /       /::\  \      /::\  \   
-   /:/\:\  \    /:/\:\  \    /:/\:\  \    /:/\:\  \   /:/  /       /:/\:\  \    /:/\:\  \  
-  /::\~\:\  \  /:/  \:\  \  /::\~\:\  \  /::\~\:\  \ /:/__/  ___  /::\~\:\  \  /::\~\:\  \ 
- /:/\:\ \:\__\/:/__/ \:\__\/:/\:\ \:\__\/:/\:\ \:\__\|:|  | /\__\/:/\:\ \:\__\/:/\:\ \:\__\
- \/__\:\ \/__/\:\  \ /:/  /\/_|::\/:/  /\:\~\:\ \/__/|:|  |/:/  /\:\~\:\ \/__/\/_|::\/:/  /
-      \:\__\   \:\  /:/  /    |:|::/  /  \:\ \:\__\  |:|__/:/  /  \:\ \:\__\     |:|::/  / 
-       \/__/    \:\/:/  /     |:|\/__/    \:\ \/__/   \::::/__/    \:\ \/__/     |:|\/__/  
-                 \::/  /      |:|  |       \:\__\      ~~~~         \:\__\       |:|  |    
-                  \/__/        \|__|        \/__/                    \/__/        \|__|    
-Forever - Algorithmic Composition - Main Stylesheet
-Wrriten by juniorxsound (http://phenomenalabs.com)
-*/
+@import url('https://fonts.googleapis.com/css?family=PT+Mono');
 
 body{
 	background-color: #fff;
@@ -25,12 +11,64 @@ canvas{
 	top: 0; left: 0;
 	z-index: 1;
 }
+#header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 3%;
+	background-color: white;
+	z-index: 10;
+}
+
+#footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 3%;
+	background-color: white;
+	z-index: 10;
+}
+#left-sidebar{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 2%;
+	height: 100%;
+	background-color: white;
+	z-index: 10;
+}
+
+#right-sidebar{
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 2%;
+	height: 100%;
+	background-color: white;
+	z-index: 10;
+}
+
+#reading{
+	z-index: 100;
+	height: 100%;
+	width: 25%;
+	position: fixed;
+	top: 3%;
+	right: 5%;
+	display: block;
+	font-family: 'PT Mono', monospace;
+	font-size: 24px;
+}
+
 #intro-container{
 	position: absolute;
 	top: 0;left: 0;
 	width: 100%; height: 100%;
 	background-color: #fff;
 	z-index: 20 !important;
+	color: black;
 }
 #explain{
 	display: none;
@@ -67,7 +105,8 @@ canvas{
 #maskCanvas{
 
 }
-#map { position:absolute; top:0; bottom:0; width:100%; }
+/*#map { position:absolute; top:2.5%; bottom:0; left: 20%; width:60%; height: 95% }*/
+#map {position:absolute; top:0; bottom:0; width:100%;}
 
 .mapboxgl-ctrl{
 	display: none !important;
@@ -155,7 +194,7 @@ canvas{
 	position: relative;
 	left: 15px;
 	width: 100%;
-	text-align: center;	
+	text-align: center;
 	font-weight: 900;
 	font-size: 4em;
 }
@@ -163,7 +202,7 @@ canvas{
 	position: relative;
 	left: 15px;
 	width: 300%;
-	text-align: left;	
+	text-align: left;
 	font-weight: 900;
 }
 #seperator{

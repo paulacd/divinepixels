@@ -3,7 +3,8 @@ Forever - Algorithmic Composition - Client side app
 Wrriten by juniorxsound (http://phenomenalabs.com)
 */
 
-
+	//hide reading div
+	$("#reading").hide();
 
 	// Init debugging dat.GUI
 	initGui();

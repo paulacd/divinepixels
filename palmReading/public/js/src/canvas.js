@@ -47,7 +47,6 @@ function draw(){
 
 function drawUserGeoLoc() {
 	for(var i = 0; i < canvasLocations.length; i++){
-		locations = canvasLocations[i];
 		//console.log('inside canvasLocation array. canvasLocations is: ' + canvasLocations[i]);
 
 		//Draw a rect for each user
@@ -75,7 +74,7 @@ function drawUsers(){
 	if(start === true){
 		//Iterate over the array that stores users pixel postions
 
-
+		//
 		for(var i = 0; i < canvasLocations.length; i++){
 			locations = canvasLocations[i];
 			//console.log('inside canvasLocation array. canvasLocations is: ' + canvasLocations[i]);
@@ -91,25 +90,32 @@ function drawUsers(){
 function mousePressed(){
 
 	console.log('length of locations array: ' + locations.length);
-	if (locations.length < 5){
+	if (locations.length <= 4){
 		locations.push([mouseX, mouseY]);
 		fill(255, 0, 255);
 		ellipse(mouseX,mouseY, 15, 15);
-	} else if (locations.length == 5) {
-		drawLines();
-	}
-	else {
+	} else {
 		console.log('no more locations allowed');
 		console.log(locations);
 		//once you're done putting in the points, draw the lines
 		//serve up the reading
+		drawLines();
+		$('canvas').animate({
+			left: -window.innerWidth / 3
+		}, 1000);
+		// $('#map').animate({
+		// 	left: -window.innerWidth * 0.000001
+		// }, 1000);
+		$(".output").show();
+		createReading();
 	}
+
 }
 
 function drawLines() {
 	strokeWeight(3);
 	stroke(255, 0, 255);
-	//line 1
+	//draw line 1
 	line(locations[0], locations[1], locations[2][0], locations[2][1]);
 	//line 2
 	line(locations[2][0], locations[2][1], locations[3][0], locations[3][1]);
@@ -133,3 +139,8 @@ function drawLines() {
 	  bBox = mapboxmap.getBounds();
 
 	};
+
+	function createReading() {
+		$("#reading").show();
+		$("#readingP").text("You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. ");
+	}

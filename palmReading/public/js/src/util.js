@@ -152,7 +152,8 @@ function initMap(){
       style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
       center: [-73.970,40.723],
       zoom: 12.5, // starting zoom
-      zoomControl: true
+      zoomControl: true,
+			//bearing: 26
       };
 
     }
@@ -209,221 +210,6 @@ function getCoords(geocoder, resultsMap) {
         });
 }
 
-// function buildScales(){
-//
-//     for(var i = 0; i < pentatonicMin.length; i++){
-//
-//       pentaFreq.push(midiToFreq(pentatonicMin[i]));
-//
-//     }
-//
-//     for(var i = 0; i < pentatonicLow.length; i++){
-//
-//       pentaLowFreq.push(midiToFreq(pentatonicLow[i]));
-//
-//     }
-//
-//
-//     console.log('All scales built successfully');
-//
-// }
-
-//Make em' make sound
-// function initOscilator(){
-//
-//     //Reverbs
-//     var reverb1 = new p5.Reverb();
-//     var reverb2 = new p5.Reverb();
-//     var reverb3 = new p5.Reverb();
-//
-//     //Distortion
-//     var DistEffect = new p5.Distortion(0.1,'none');
-//
-//     //Filter
-//     filter = new p5.BandPass();
-//     filter2 = new p5.BandPass();
-//
-//     //Delays
-//     var delay1 = new p5.Delay();
-//     delay1.setType("pingPong");
-//     var delay2 = new p5.Delay();
-//     delay2.setType("pingpong");
-//
-//     //Envelope
-//     env1 = new p5.Env(0.1, 0.2, 0.2, 0.1);
-//     env1.setRange(0.2, 0);
-//
-//     env2 = new p5.Env(0.1, 0.2, 0.2, 0.1);
-//     env2.setRange(0.2, 0);
-//
-//     //Oscilator
-//
-//     DRONEosc = new p5.Oscillator('triangle');
-//
-//     DRONE2osc = new p5.Oscillator('sine');
-//
-//     DRONE2osc.disconnect();
-//
-//     DRONEosc.disconnect();
-//
-//     DRONE2osc.connect(filter2);
-//
-//     DRONEosc.connect(DistEffect)
-//
-//     DistEffect.disconnect();
-//
-//     DistEffect.connect(filter);
-//
-//     SQRosc = new p5.Oscillator('square');
-//
-//     SNosc = new p5.Oscillator('sine');
-//
-//     muteOscilators();
-//
-//     //Processing chains and parameters
-//     reverb1.process(SQRosc, 5, 3, true);
-//     // delay1.process(reverb1, 0.12, 0.3, 1500);
-//
-//     reverb2.process(SNosc, 3, 5);
-//     // delay2.process(reverb2, 0.12, 0.5, 1500, true);
-//
-//     reverb3.process(filter, 5, 5);
-//     //Init
-//
-//     SQRosc.start();
-//
-//     SNosc.start();
-//
-//     DRONE2osc.start();
-//
-//     DRONEosc.start();
-//
-//     hitDrone();
-//
-// };
-//
-// function controlFilter(){
-//
-//   var freq = map((sin(angle) * diameter/2) + diameter/2, 0, 30, 100, 1000);
-//
-//   var freq2 = 100 + sin(angle) * diameter/2 + diameter/2;
-//
-//   filter.freq(freq);
-//
-//   filter2.freq(freq2);
-//
-//   filter.res((sin(angle) * diameter/2) + diameter/2);
-//
-//   filter2.res((cos(angle) * diameter/2) + diameter/2);
-//
-// };
-//
-// //Main function to change the note during compostion time
-// function changeNote(){
-//
-//     muteOscilators();
-//
-//     var frequenci = 0;
-//
-//     currentScale = pentaFreq;
-//
-//     //Everytime a new user batch comes in assume the current scale
-//     assumeScale();
-//
-//     //Iterate over all the users pixel position to determine note height
-//     for(var z = 0; z < canvasLocations.length; z++){
-//
-//       var xy = canvasLocations[z];
-//
-//       //Only console log the Y position of the current note
-//       if(parseInt(transportLine) == parseInt(xy[0])){
-//
-//           if(xy[1] > 0 && xy[1] < height/5){
-//             console.log('1st Area');
-//
-//             frequenci = pentaFreq[round(random(12, 14))];
-//
-//             SQRosc.freq(frequenci, 0.01);
-//             SNosc.freq(frequenci, 0.01);
-//
-//
-//           } else if (xy[1] > height/5 && xy[1] < (height/5)*2){
-//             console.log('2nd Area');
-//
-//             frequenci = pentaFreq[round(random(9, 11))];
-//
-//             SQRosc.freq(frequenci, 0.01);
-//             SNosc.freq(frequenci, 0.01);
-//
-//           } else if (xy[1] > (height/5)*2 && xy[1] < (height/5)*3){
-//             console.log('3rd Area');
-//
-//             frequenci = pentaFreq[round(random(6, 8))];
-//
-//             SQRosc.freq(frequenci, 0.01);
-//             SNosc.freq(frequenci, 0.01);
-//
-//
-//           } else if (xy[1] > (height/5)*3 && xy[1] < (height/5)*4){
-//             console.log('4th Area');
-//
-//             frequenci = pentaFreq[round(random(3, 5))];
-//
-//             SQRosc.freq(frequenci, 0.01);
-//             SNosc.freq(frequenci, 0.01);
-//
-//
-//           } else if (xy[1] > (height/5)*4 && xy[1] < height){
-//             console.log('5th Area');
-//
-//             frequenci = pentaFreq[round(random(0, 2))];
-//
-//             SQRosc.freq(frequenci, 0.01);
-//             SNosc.freq(frequenci, 0.01);
-//
-//
-//           } else {
-//             console.log('You are currently not in the map, sorry');
-//           }
-//
-//       }
-//
-//     }
-//
-// }
-//
-// //Trigger the envelope attached to the oscillators
-// function hitNote(){
-//
-//   env1.play(SQRosc);
-//
-//   env2.play(SNosc);
-//
-// };
-//
-// //Start the drone sound and change it's frequncy
-// function hitDrone(){
-//
-//   var noteSelector1 = pentaLowFreq[round(random(0, 5))];
-//
-//   var noteSelector2 = pentatonicMin[round(random(0, 10))];
-//
-//   DRONEosc.freq(noteSelector1, 0.5);
-//
-//   DRONE2osc.freq(noteSelector2, 1.0);
-//
-// };
-//
-// //Silence the oscillators
-// function muteOscilators(){
-//
-//       SQRosc.amp(0);
-//
-//       SNosc.amp(0);
-//
-//       // DRONEosc.amp(0);
-//
-// };
 
 //Is it devisable by two?
 function isOdd(num) {
@@ -467,68 +253,6 @@ function initStartEnd(start, end){
 
 };
 
-//Move, count and control the white cursor
-// function cursorController(){
-//
-//     //Don't start before the server sends off gps data
-//     if(start == true){
-//
-//       //Transport courser increment
-//       transportLine = transportLine + guiParams.playSpeed;
-//
-//     };
-//
-//     // fade the main output in only once to avoid oscilator errors on init
-//     if(transportLine == 100 && cycleCounter == 0){
-//
-//       masterVolume(1.0, 1, 1);
-//
-//     };
-//
-//
-//     //Courser
-//     stroke(0, 0, 0);
-//     strokeWeight(1);
-//     line(transportLine, height, transportLine, 0);
-//
-//     //Make it repeat and count cycles
-//     if(parseInt(transportLine) == relativeEnd){
-//
-//       transportLine = 0;
-//
-//       cycleCounter++;
-//
-//       hitDrone();
-//
-//     };
-//
-//     for(var i = 0; i < canvasLocations.length; i++){
-//
-//       var locations = canvasLocations[i];
-//
-//         //If the courser reaches a user trigger the synth
-//       if(round(transportLine) == round(locations[0])){
-//
-//         //Make sure the master volume is on
-//         if(masterVolume().value != 1){
-//
-//           masterVolume(1);
-//
-//         };
-//
-//         //Make the streets change color on note hit
-//         streetHit(200);
-//
-//         //Make sure to change the frequncy
-//         changeNote();
-//
-//         //"Oops I did it again..."
-//         hitNote();
-//
-//       };
-//     };
-//
-// };
 
 function analyseServerGeoData(geodata){
 
@@ -562,6 +286,7 @@ function analyseServerGeoData(geodata){
       var mappedY = map(latlong[0], bBox._sw.lat,
 bBox._ne.lat, height, 0);
       var mappedX = map(latlong[1], bBox._sw.lng, bBox._ne.lng, 0, width);
+
 
       //Store user pixel location for p5
       canvasLocations.push([mappedX, mappedY]);
