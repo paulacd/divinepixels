@@ -140,6 +140,7 @@ function drawLines() {
 	line(locations[0], locations[1], locations[4][0], locations[4][1]);
 }
 
+
 	//Resize Canvas to Fit the Screen
 	window.onresize = function() {
 
