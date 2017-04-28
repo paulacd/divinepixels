@@ -3,6 +3,9 @@ Forever - Algorithmic Composition - Client side p5 canvas lib
 Wrriten by juniorxsound (http://phenomenalabs.com)
 */
 
+// use math.js
+math.sqrt(-4); // 2i
+
 //Setup the canvas
 function preload(){};
 
@@ -92,6 +95,7 @@ function mousePressed(){
 	console.log('length of locations array: ' + locations.length);
 	if (locations.length <= 4){
 		locations.push([mouseX, mouseY]);
+		console.log(mouseX, mouseY);
 		fill(255, 0, 255);
 		ellipse(mouseX,mouseY, 15, 15);
 	} else {
@@ -115,6 +119,17 @@ function mousePressed(){
 function drawLines() {
 	strokeWeight(3);
 	stroke(255, 0, 255);
+
+	//Assign points to Variables
+	pointOneX = locations[0];
+	pointOneY = locations[1];
+	pointTwoX = locations[2][0];
+	pointTwoY = locations[2][1];
+	pointThreeX = locations[3][0];
+	pointThreeY = locations[3][1];
+	pointFourX = locations[4][0];
+	pointFourY = locations[4][1];
+
 	//draw line 1
 	line(locations[0], locations[1], locations[2][0], locations[2][1]);
 	//line 2
@@ -124,7 +139,6 @@ function drawLines() {
 	//line 4
 	line(locations[0], locations[1], locations[4][0], locations[4][1]);
 }
-
 
 	//Resize Canvas to Fit the Screen
 	window.onresize = function() {
@@ -139,8 +153,3 @@ function drawLines() {
 	  bBox = mapboxmap.getBounds();
 
 	};
-
-	function createReading() {
-		$("#reading").show();
-		$("#readingP").text("You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. You can't love someone into liking you. ");
-	}

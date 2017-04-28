@@ -73,3 +73,13 @@ var isLoop = false;
 
 //debug
 var mapboxctx;
+
+//points of lines
+var pointOneX;
+var pointOneY;
+var pointTwoX;
+var pointTwoY;
+var pointThreeX;
+var pointThreeY;
+var pointFourX;
+var pointFourY;
