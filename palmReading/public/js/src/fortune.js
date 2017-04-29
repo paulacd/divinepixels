@@ -14,14 +14,11 @@ function createReading() {
 
     $("#reading").show();
 
-    if (intersect) {
-        $("#reading1").text("You're at a crossroads in your life right now. A decision needs to be made. You know this. Face the decision head on, in the long run, you'll thank yourself for it.");
+    $("#refreshButton").click(function() {
+        console.log("clearing");
+        location.reload();
 
-    } else {
-        $("#reading1").text("You seem to be on a steady path in your life right now. You have a goal and you should follow it. Remember to follow your gut, it usually lets on more than you know.");
-    }
-
-
+      });
 
 }
 
@@ -59,6 +56,13 @@ function pointIntersect() {
         intersect = true;
     }
 
+    if (intersect) {
+        $("#reading1").text("You're at a crossroads in your life right now. A decision needs to be made. You know this. Face the decision head on, in the long run, you'll thank yourself for it.");
+
+    } else {
+        $("#reading1").text("You seem to be on a steady path in your life right now. You have a goal and you should follow it. Remember to follow your gut, it usually lets on more than you know.");
+    }
+
     // console.log(intersect);
 
 }
@@ -93,28 +97,14 @@ function pointDist() {
     // document.getElementById('reading2').innerHTML = randomSentence;
     $("#reading2").text(randomSentence);
 
-  } else{
+  } else if (distX <=1000 && distY <= 675){
 
     var randomSentence = nearPoints[Math.floor(Math.random() * nearPoints.length)];
     // document.getElementById('reading2').innerHTML = randomSentence;
     $("#reading2").text(randomSentence);
 
+  } else {
+    $("#reading2").text("out of range");
   }
 
-}
-
-function createSentence(arr) {
-
-    // String.prototype.format = function() {
-    //     var i = 0,
-    //         args = arguments;
-    //     return this.replace(/{}/g, function() {
-    //         return typeof args[i] != 'undefined' ? args[i++] : '';
-    //     });
-    // };
-
-    var randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
-
-    console.log(randomSentence.format(arr[0], arr[1], arr[2]));
-    document.getElementById('reading2').innerHTML = randomSentence.format(arr[0], arr[1], arr[2]);
 }

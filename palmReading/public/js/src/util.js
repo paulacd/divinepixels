@@ -150,7 +150,7 @@ function initMap(){
       mapParams = {
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
-      center: [-73.970,40.723],
+      center: [-74,40.723],
       zoom: 12.5, // starting zoom
       zoomControl: true,
 			//bearing: 26

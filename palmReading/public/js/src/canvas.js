@@ -54,7 +54,7 @@ function drawUserGeoLoc() {
 
 		//Draw a rect for each user
 		noStroke();
-		fill(255, 0, 0);
+		fill(255, 0, 255);
 		// ellipse(552,518,20,20);
 		ellipse(locations[0], locations[1], 10, 10);
 		// fill(0,0,0, 25);
