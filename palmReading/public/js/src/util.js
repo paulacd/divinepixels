@@ -137,12 +137,13 @@ function initMap(){
 
     if( system == 'mobile' ){
 
-      mapParams = {
+			mapParams = {
       container: 'map', // container id
-      style: 'mapbox://styles/juniorxsound/ciwdqlveu00102pnatdlaaes0', //stylesheet location
-      center: [-73.98, 40.74278],
-      zoom: 11, // starting zoom
-      zoomControl: false
+      style: 'mapbox://styles/mapbox/dark-v9', //stylesheet location
+      center: [-74,40.723],
+      zoom: 10, // starting zoom
+      zoomControl: true,
+			//bearing: 26
       };
 
     } else if( system == 'desktop' ) {
@@ -161,6 +162,15 @@ function initMap(){
 		//Or's map: 'mapbox://styles/juniorxsound/ciwdqlveu00102pnatdlaaes0'
 		//dark version: 'mapbox://styles/mapbox/dark-v9'
 		//
+
+		//Or's styling:
+		// mapParams = {
+		// container: 'map', // container id
+		// style: 'mapbox://styles/juniorxsound/ciwdqlveu00102pnatdlaaes0', //stylesheet location
+		// center: [-73.98, 40.74278],
+		// zoom: 11, // starting zoom
+		// zoomControl: false
+		// };
 
     //Create a new map object
     mapboxmap = new mapboxgl.Map(mapParams);

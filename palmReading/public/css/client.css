@@ -59,7 +59,7 @@ canvas{
 	right: 5%;
 	display: block;
 	font-family: 'PT Mono', monospace;
-	font-size: 24px;
+	font-size: 150%;
 }
 
 #intro-container{

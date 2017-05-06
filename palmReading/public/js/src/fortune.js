@@ -104,7 +104,10 @@ function pointDist() {
     $("#reading2").text(randomSentence);
 
   } else {
-    $("#reading2").text("out of range");
+    // $("#reading2").text("out of range");
+    var randomSentence = farPoints[Math.floor(Math.random() * farPoints.length)];
+    // document.getElementById('reading2').innerHTML = randomSentence;
+    $("#reading2").text(randomSentence);
   }
 
 }
